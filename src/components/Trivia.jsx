@@ -15,7 +15,7 @@ const Trivia = ({ data, setStop, questionNumber, setQuestionNumber }) => {
 
   useEffect(() => {
     letsPlay();
-  }, [letsPlay]);
+  }, [letsPlay, question]);
 
   useEffect(() => {
     const shuffledAnswers = [...data[questionNumber - 1].answers].sort(
@@ -32,6 +32,7 @@ const Trivia = ({ data, setStop, questionNumber, setQuestionNumber }) => {
   };
 
   const handleClick = (ans) => {
+    console.log(ans);
     setSelectedAnswer(ans);
     setClassName("answer active");
 
@@ -41,17 +42,17 @@ const Trivia = ({ data, setStop, questionNumber, setQuestionNumber }) => {
       ),
     );
 
-    delay(5000, () => {
+    delay(4000, () => {
       if (ans.correct) {
         ansCorrect();
 
-        delay(3000, () => {
+        delay(4000, () => {
           setQuestionNumber((prevQuestion) => prevQuestion + 1);
           setSelectedAnswer(null);
         });
       } else {
         ansWrong();
-        delay(3000, () => {
+        delay(4000, () => {
           setStop(true);
         });
       }
